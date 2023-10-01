@@ -24,11 +24,7 @@ def is_bot_owner(userid):
     return userid == data['bot-owner-id']
 
 user_ids =[]
-async def id(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    user_id = update.effective_user.id
-    if user_id not in user_ids:
-        user_ids.append(user_id)
-    await context.bot.sendMessage(chat_id=update.effective_user.id, text=f"Hello, your user ID ({user_id}) has been added!")
+    
 
 async def users(update:Update, context:ContextTypes.DEFAULT_TYPE):
     uID = update.effective_user.id
@@ -90,6 +86,9 @@ allChapters = CommandHandler("getAllChapters", get_all_chapters)
 chapterInfo = CommandHandler("getChapterInfo", get_detail_of_a_single_chapter)
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    user_id = update.effective_user.id
+    if user_id not in user_ids:
+        user_ids.append(user_id)
     await context.bot.send_message(chat_id=update.effective_chat.id,
      text=('''
 Welcome to the Quran Bot! This bot is designed to help you access information about Quranic chapters quickly and easily.
