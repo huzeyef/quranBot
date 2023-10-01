@@ -49,7 +49,7 @@ async def get_all_chapters(update: Update, context: ContextTypes.DEFAULT_TYPE):
 async def get_detail_of_a_single_chapter(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if not context.args:
         await context.bot.send_message(chat_id=update.effective_chat.id,
-                                   text='Please insert id  like this /getChapterInfo <chapter_id>.\n Example\n/getChapterInfo 1 ',reply_to_message_id=True)
+                                   text='Please insert id  like this /getchapterinfo <chapter_id>.\n Example\n/getchapterinfo 1 ',reply_to_message_id=True)
         
     else:
         response = requests.get(url + f'chapters/{context.args[0]}/')
@@ -79,11 +79,11 @@ English name: {detail[6]}
             await context.bot.send_message(chat_id=update.effective_chat.id,
                                     text=f"Request failed with status code: {response.status_code}")
 
-# Handler for /getAllChapters command
-allChapters = CommandHandler("getAllChapters", get_all_chapters)
+# Handler for /getallchapters command
+allChapters = CommandHandler("getallchapters", get_all_chapters)
 
-# Handler for /getChapterInfo command
-chapterInfo = CommandHandler("getChapterInfo", get_detail_of_a_single_chapter)
+# Handler for /getchapterinfo command
+chapterInfo = CommandHandler("getchapterinfo", get_detail_of_a_single_chapter)
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user_id = update.effective_user.id
@@ -99,15 +99,15 @@ You can use the following commands to interact with the bot:
 This command will provide you with a brief welcome message and instructions on how to use the bot.
 The bot is designed to make it easier for you to explore and learn about the Quranic chapters.
 
-/getAllChapters - Get a list of all Quranic chapters.
+/getallchapters - Get a list of all Quranic chapters.
 
 This command will provide you with a list of the names of all the chapters in the Quran.
 
-/getChapterInfo <chapter_id> - Get detailed information about a specific Quranic chapter.
+/getchapterinfo <chapter_id> - Get detailed information about a specific Quranic chapter.
 
 Replace <chapter_id> with the ID of the chapter you want to learn more about. 
 For example, 
-/getChapterInfo 1 
+/getchapterinfo 1 
 The above command will provide details about Surah Al-Fatihah.You can type any chapter ID from 1 to 114 to get details about a specific chapter.
 You can use this command to retrieve information such as the revelation place, revelation order, number of verses, number of pages, and English name of the selected chapter.
 
