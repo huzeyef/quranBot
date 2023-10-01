@@ -4,12 +4,15 @@ from telegram import Update
 from telegram.ext import  CommandHandler,  ContextTypes, ApplicationBuilder
 import json
 
-with open('config.json', 'r') as cfg:
-    data = json.load(cfg)
-    
 
 # API base 
 url = "https://api.quran.com/api/v4/"
+with open('config.json', 'r') as cfg:
+    data = json.load(cfg)
+
+
+
+
 
 # Enable logging
 logging.basicConfig(
@@ -17,8 +20,22 @@ logging.basicConfig(
     level=logging.DEBUG
 )
 
+def is_bot_owner(userid):
+    return userid == data['bot-owner-id']
 
+user_ids =[]
+async def id(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    user_id = update.effective_user.id
+    if user_id not in user_ids:
+        user_ids.append(user_id)
+    await context.bot.sendMessage(chat_id=update.effective_user.id, text=f"Hello, your user ID ({user_id}) has been added!")
 
+async def users(update:Update, context:ContextTypes.DEFAULT_TYPE):
+    uID = update.effective_user.id
+    if is_bot_owner(uID):
+        await update.message.reply_text(f'you are the owner\n you have {len(user_ids)} bot users ')
+    else:
+        await update.message.reply_text('sorry you dont have permiission to access this command!!')
 # Function to get all chapters
 async def get_all_chapters(update: Update, context: ContextTypes.DEFAULT_TYPE):
     response = requests.get(url + 'chapters')
@@ -100,7 +117,8 @@ Also don't forget to make Du'a for me 🙏
      '''))
 
 st = CommandHandler("start", start)
-
+i_d = CommandHandler("id", id)
+userS= CommandHandler("users", users)
 
 if __name__ == '__main__':
     token = data['token']
@@ -111,5 +129,7 @@ if __name__ == '__main__':
     application.add_handler(st)
     application.add_handler(allChapters)
     application.add_handler(chapterInfo)
+    application.add_handler(i_d)
+    application.add_handler(userS)
 
     application.run_polling()
