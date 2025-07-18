@@ -1,74 +1,55 @@
 # 📖 Quran Bot
 
-A simple and efficient Telegram bot built with Python to help users explore chapters of the Qur'an using the [Quran.com API](https://quran.com).
+A simple and efficient Telegram bot built with Python to help users explore chapters of the Qur'an using the [Quran.com API](https://quran.com). Created with ❤️ by [@huzeyef](https://github.com/huzeyef)
 
-Created with ❤️ by [@huzeyef](https://github.com/huzeyef)
-
----
-
-## ✨ Features
-
-- `/start` — Get a welcome message with usage instructions.
-- `/getallchapters` — Get a full list of all 114 Surahs (Qur'anic chapters).
-- `/getchapterinfo <chapter_id>` — Get detailed info about any Surah by ID (1–114).
-- `/users` — (Owner only) View the number of users who used the bot.
-- `/id` — Get your Telegram user ID.
-
----
-
-## 📦 Setup Instructions
-
-### 🔧 Prerequisites
-
-- Python 3.10 or later
-- A Telegram bot token from [BotFather](https://t.me/BotFather)
-
-### 📁 Installation
-
-1. **Clone the repository**
+To install the bot locally, clone the repository and install the dependencies:
 
 ```bash
 git clone https://github.com/huzeyef/quran-bot.git
 cd quran-bot
-Install the required packages
-
-bash
-Copy
-Edit
 pip install -r requirements.txt
-Create a config.json file
+```
+Before running the bot, create a config.json file in the root directory of the project with the following content:
 
-In the root directory, create a file called config.json and add the following:
-
-json
-Copy
-Edit
+```json
 {
-  "token": "YOUR_TELEGRAM_BOT_TOKEN",
-  "bot-owner-id": YOUR_TELEGRAM_USER_ID
+  "token": "YOUR_BOT_TOKEN",
+  "bot-owner-id": "YOUR_TELEGRAM_ID"
 }
-Replace "YOUR_TELEGRAM_BOT_TOKEN" with your actual Telegram bot token and "YOUR_TELEGRAM_USER_ID" with your own Telegram user ID.
+```
+Replace YOUR_BOT_TOKEN with your bot’s token from BotFather, and YOUR_TELEGRAM_ID with your personal Telegram numeric user ID.
 
-Run the bot
+Then run the bot using:
 
-bash
-Copy
-Edit
+```python
 python main.py
-📋 Example Commands
-/getchapterinfo 1 — Get info about Surah Al-Fatihah
+```
+Once the bot is running, you can interact with it on Telegram. Here are the available commands:
 
-/getchapterinfo 114 — Get info about Surah An-Nas
+/start — Shows a welcome message and instructions for using the bot.
 
-/getallchapters — Lists all Surah names
+/getallchapters — Displays a list of all Qur'anic chapter names (Surahs).
 
-/id — Get your Telegram ID
+/getchapterinfo <chapter_id> — Shows detailed information for a given chapter ID, such as:
 
-/users — Bot owner command to count users
+Surah name
 
-👤 Author
-GitHub: @huzeyef
+Revelation place
 
-Telegram: @hhuuzzz1
+Verse count
 
-Please don't forget to make Du'a for the developer 🙏
+Revelation order
+
+Page range
+
+English translation name
+Example: /getchapterinfo 1 will return information about Surah Al-Fatihah.
+
+/id — Returns your Telegram user ID.
+
+/users — (Owner only) Shows how many users have interacted with the bot.
+
+This bot is made for educational purposes and to ease Quran study and navigation. You’re encouraged to improve it or deploy your own copy.
+
+Made with sincerity. If you find it useful, please remember to make Du'a for the developer 🙏
+Contact: @hhuuzzz1 | GitHub: @huzeyef
